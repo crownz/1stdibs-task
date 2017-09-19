@@ -1,6 +1,7 @@
 import 'jsdom-global/register';
 import * as globalJsdom from 'jsdom-global';
 import * as React from 'react';
+import * as sinon from 'sinon';
 import { shallow } from 'enzyme';
 import { expect } from 'chai';
 import ShopItem from './shop-item.tsx';
@@ -17,6 +18,19 @@ describe('Component: Shop Item', function () {
   it('should render Quizz component', function () {
     const driver = createDriver();
     expect(driver.element('shop-item-container').exists()).to.be.true;
+  });
+
+  it('should render header with title and back button', function () {
+    const driver = createDriver();
+    expect(driver.element('seller').exists()).to.be.true;
+    expect(driver.element('back-link').exists()).to.be.true;
+  });
+
+  it('should call onBack', function () {
+    const onBack = sinon.spy();
+    const driver = createDriver({ onBack });
+    driver.element('back-link').click();
+    expect(onBack.calledOnce).to.be.true;
   });
 });
 

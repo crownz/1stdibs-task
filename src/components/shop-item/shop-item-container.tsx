@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { getItem } from '../../actions/item';
+import { getItem, clearItem } from '../../actions/item';
 import { toggleFavoriteItem } from '../../actions/favorite';
 import ShopItem from './shop-item';
 import * as Styles from './shop-item.scss';
@@ -12,6 +12,7 @@ interface ShopItemContainerProps {
   history: any;
   match: any;
   getItem: any;
+  clearItem: any;
   toggleFavoriteItem: any;
 }
 
@@ -26,6 +27,7 @@ class ShopItemContainer extends React.Component<ShopItemContainerProps, {}> {
   }
 
   goBack() {
+    this.props.clearItem();
     this.props.history.push('/home');
   }
 
@@ -58,7 +60,7 @@ class ShopItemContainer extends React.Component<ShopItemContainerProps, {}> {
   }
 
   static mapDispatchToProps(dispatch: any) {
-    return bindActionCreators({ getItem, toggleFavoriteItem }, dispatch);
+    return bindActionCreators({ getItem, toggleFavoriteItem, clearItem }, dispatch);
   }
 }
 

@@ -23,11 +23,11 @@ function renderHeader(item, onBack) {
   return (
     <div className={ Styles['header'] }>
       <div className={ Styles['back'] }>
-        <div className={ Styles['back-link'] } onClick={ onBack }>
+        <div className={ Styles['back-link'] } onClick={ onBack } data-hook="back-link">
           { '< Home '}
         </div>
       </div>
-      <div className={ Styles['seller'] }>
+      <div className={ Styles['seller'] } data-hook="seller">
         { item.seller.company }
       </div>
     </div>

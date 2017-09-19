@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as ReactDOM from "react-dom";
-import { Router, Route } from 'react-router-dom';
+import { Router, Route, BrowserRouter } from 'react-router-dom';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
@@ -31,7 +31,7 @@ export default class BrowserContainer extends React.Component<{}, {}> {
   render() {
     return (
       <Provider store={ store }>
-        <Router history={ history }>
+        <BrowserRouter>
           <div className={ Styles['container'] }>
             <div className={ Styles['inner-container'] }>
               <div className={ Styles['content'] }>
@@ -40,7 +40,7 @@ export default class BrowserContainer extends React.Component<{}, {}> {
               </div>
             </div>
           </div>
-        </Router>
+        </BrowserRouter>
       </Provider>
     );
   }

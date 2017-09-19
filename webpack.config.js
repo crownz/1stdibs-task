@@ -24,14 +24,18 @@ module.exports = {
     module: {
         loaders: [
             {
+              test: /\.js?$/,
+              loader: 'babel'
+            },
+            {
+              test: /\.jsx?$/,
+              exclude: /node_modules/,
+              loader: 'babel'
+            },
+            {
                 test: /\.tsx?$/,
                 loader: 'ts-loader',
                 exclude: /node_modules/
-            },
-            {
-                test: /\.jsx?$/,
-                exclude: /node_modules/,
-                loader: 'babel'
             },
             {
                 test: /\.s?css$/,
@@ -46,7 +50,10 @@ module.exports = {
     },
     externals: {
         "react": "React",
-        "react-dom": "ReactDOM"
+        "react-dom": "ReactDOM",
+        "cheerio": 'window',
+        "react/lib/ExecutionEnvironment": true,
+        "react/lib/ReactContext": true
     },
     postcss: function () {
         return [require('autoprefixer'), require('precss')];

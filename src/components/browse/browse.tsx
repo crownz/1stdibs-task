@@ -13,12 +13,14 @@ interface BrowseProps {
   getItem: any;
   toggleFavoriteItem: any;
   history?: any;
+  router?: any;
 }
 
 class Browse extends React.Component<BrowseProps, {}> {
 
   constructor(props: BrowseProps, context) {
     super(props, context);
+    console.log("props: ", props);
   }
 
   renderItems() {
@@ -28,6 +30,7 @@ class Browse extends React.Component<BrowseProps, {}> {
 
   getItemAndNavigate(id: string) {
     this.props.history.push(`/item/${id}`);
+    //this.props.router.history.push(`/item/${id}`);
   }
 
   itemProps(item: Item) {

@@ -6,7 +6,7 @@
   "scripts": {
     "cleaninstall": "rm -rf ./node_modules && npm cache clean && npm install",
     "dev": "node server/index.js",
-    "test": "mocha -w test/helpers/browser.js --require ts-node/register  ./src/**/*.spec.tsx"
+    "test": "mocha --require ignore-styles --compilers js:babel-core/register -w test/helpers/browser.js ./src/**/*.spec.tsx"
   },
   "repository": {
     "type": "git",
@@ -39,12 +39,14 @@
     "babel-preset-airbnb": "^2.4.0",
     "babel-preset-stage-3": "^6.24.1",
     "chai": "^4.1.2",
+    "css-modules-require-hook": "^4.2.2",
     "ejs": "^2.4.1",
     "enzyme": "^2.9.1",
     "express": "^4.13.4",
     "file-loader": "^0.8.5",
     "history": "^4.7.2",
     "jsdom": "^11.2.0",
+    "jsdom-global": "^3.0.2",
     "mocha": "^3.5.3",
     "node-sass": "^4.5.3",
     "react": "^15.6.1",
@@ -68,6 +70,7 @@
     "babel-preset-stage-0": "^6.5.0",
     "css-loader": "^0.23.1",
     "html-webpack-plugin": "^2.14.0",
+    "ignore-styles": "^5.0.1",
     "mocha": "^3.5.3",
     "postcss-loader": "^0.8.2",
     "precss": "^1.4.0",
@@ -75,7 +78,7 @@
     "style-loader": "^0.13.0",
     "ts-loader": "^2.3.7",
     "typescript": "^2.5.2",
-    "webpack": "^1.12.14",
-    "webpack-dev-middleware": "^1.5.1"
+    "webpack": "^2.7.0",
+    "webpack-dev-middleware": "^1.12.0"
   }
 }

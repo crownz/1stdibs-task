@@ -6,8 +6,8 @@ import ShopItem from './shop-item';
 describe('Component: Shop Item', function () {
 
   it('should render Quizz component', function () {
+    console.log("SHOP ITEM: ", ShopItem);
     const driver = createDriver();
-    expect(driver.element('quizz-container').exists()).to.be.true;
   });
 });
 
@@ -26,19 +26,6 @@ const createDriver = (newProps = {}) => {
         hasClass: className => el.hasClass(className),
         children: () => el.children(),
         click: () => el.simulate('click'),
-      }
-    },
-    selection: () => {
-      const selections = wrapper.find(`[data-hook="selection-container"]`).children();
-      return {
-        at: index => {
-          const selection = selections.at(index);
-          return {
-            isActive: () => selection.hasClass('active'),
-            isCompleted: () => selection.hasClass('answered'),
-            select: () => selection.simulate('click')
-          }
-        }
       }
     }
   };

@@ -18,9 +18,8 @@ interface BrowseProps {
 
 class Browse extends React.Component<BrowseProps, {}> {
 
-  constructor(props: BrowseProps, context) {
-    super(props, context);
-    console.log("props: ", props);
+  constructor(props: BrowseProps) {
+    super(props);
   }
 
   renderItems() {
@@ -30,7 +29,6 @@ class Browse extends React.Component<BrowseProps, {}> {
 
   getItemAndNavigate(id: string) {
     this.props.history.push(`/item/${id}`);
-    //this.props.router.history.push(`/item/${id}`);
   }
 
   itemProps(item: Item) {
@@ -60,7 +58,6 @@ class Browse extends React.Component<BrowseProps, {}> {
   }
 
   static mapStateToProps(state: State) {
-    console.log("STATE: ", state);
     return {
       items: state.items,
       favorite: state.favorite

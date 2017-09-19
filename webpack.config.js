@@ -1,5 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
+const autoprefixer = require('autoprefixer');
 
 module.exports = {
     context: __dirname,
@@ -14,39 +15,45 @@ module.exports = {
         filename: '[name].js'
     },
     resolve: {
-        root: path.resolve(__dirname + '/../src'),
-        extensions: ['', '.js', '.jsx', '.css', '.tsx']
+        extensions: ['.js', '.jsx', '.css', '.tsx']
     },
     plugins: [
-        new webpack.optimize.OccurenceOrderPlugin(),
-        new webpack.NoErrorsPlugin()
+        new webpack.NoErrorsPlugin(),
+        new webpack.LoaderOptionsPlugin({
+          options: {
+            context: __dirname,
+            postcss: [
+              autoprefixer
+            ]
+          }
+        })
     ],
     module: {
-        loaders: [
-            {
-              test: /\.js?$/,
-              loader: 'babel'
-            },
-            {
-              test: /\.jsx?$/,
-              exclude: /node_modules/,
-              loader: 'babel'
-            },
-            {
-                test: /\.tsx?$/,
-                loader: 'ts-loader',
-                exclude: /node_modules/
-            },
-            {
-                test: /\.s?css$/,
-                loaders: [
-                    'style-loader',
-                    'css-loader?modules&sourceMap&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]',
-                    'sass-loader',
-                    'postcss-loader'
-                ]
-            }
-        ]
+      rules: [
+        {
+          enforce: 'pre',
+          test: /\.js?$/,
+          loader: 'babel-loader',
+          query: { presets: ['es2015'] }
+        },
+        {
+          test: /\.(js|jsx)$/,
+          loaders: [{ loader: 'babel-loader' }]
+        },
+        {
+          test: /\.tsx?$/,
+          loader: "awesome-typescript-loader"
+        },
+        {
+          test: /\.scss$/,
+          loaders: [
+            { loader: "style-loader" },
+            { loader: "css-loader?modules&sourceMap&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]" },
+            { loader: "sass-loader" },
+            { loader: "postcss-loader" }
+          ]
+        }
+      ],
     },
     externals: {
         "react": "React",
@@ -54,9 +61,6 @@ module.exports = {
         "cheerio": 'window',
         "react/lib/ExecutionEnvironment": true,
         "react/lib/ReactContext": true
-    },
-    postcss: function () {
-        return [require('autoprefixer'), require('precss')];
     },
     stats: { colors: true }
 };

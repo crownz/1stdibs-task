@@ -1,4 +1,5 @@
-require('babel-register')();
+require('ts-node').register({ fast: true });
+require('jsdom-global/register');
 
 var jsdom = require('jsdom');
 const { JSDOM } = jsdom;

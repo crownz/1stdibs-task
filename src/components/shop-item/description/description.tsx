@@ -1,5 +1,5 @@
 import * as React from 'react';
-import * as Styles from './description.scss';
+import * as Styles from './_description.scss';
 
 export default ({ item }) => {
   return (

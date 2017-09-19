@@ -1,11 +1,10 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import { getItem } from '../../actions/item';
 import { toggleFavoriteItem } from '../../actions/favorite';
 import Item from './item';
-import * as Styles from './browse.scss';
+import * as Styles from './_browse.scss';
 
 interface BrowseProps {
   items: Item[];
@@ -13,10 +12,9 @@ interface BrowseProps {
   getItem: any;
   toggleFavoriteItem: any;
   history?: any;
-  router?: any;
 }
 
-class Browse extends React.Component<BrowseProps, {}> {
+export class Browse extends React.Component<BrowseProps, {}> {
 
   constructor(props: BrowseProps) {
     super(props);
@@ -46,11 +44,11 @@ class Browse extends React.Component<BrowseProps, {}> {
 
   render() {
     return (
-      <div className={ Styles['container'] }>
+      <div className={ Styles['container'] } data-hook="browse-container">
         <div className={ Styles['title'] }>
-             Browse page
+           Browse page
         </div>
-        <div className={ Styles['items'] }>
+        <div className={ Styles['items'] } data-hook="items">
           { this.renderItems() }
         </div>
       </div>
@@ -69,4 +67,4 @@ class Browse extends React.Component<BrowseProps, {}> {
   }
 }
 
-export default withRouter(connect(Browse.mapStateToProps, Browse.mapDispatchToProps)(Browse));
+export default connect(Browse.mapStateToProps, Browse.mapDispatchToProps)(Browse);

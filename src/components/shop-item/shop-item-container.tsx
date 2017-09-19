@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { getItem, clearItem } from '../../actions/item';
 import { toggleFavoriteItem } from '../../actions/favorite';
 import ShopItem from './shop-item';
-import * as Styles from './shop-item.scss';
+import * as Styles from './_shop-item.scss';
 
 interface ShopItemContainerProps {
   item: Item;

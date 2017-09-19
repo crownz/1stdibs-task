@@ -1,5 +1,5 @@
 import * as React from 'react';
-import * as Styles from './item.scss';
+import * as Styles from './_item.scss';
 
  interface ItemProps {
    imageUrl: string;
@@ -15,15 +15,15 @@ import * as Styles from './item.scss';
    };
 
    return (
-     <div className={ Styles['container'] }>
+     <div className={ Styles['container'] } data-hook="item-container">
        <div className={ Styles['image-container'] }>
-         <img src={ imageUrl } className={ Styles['image'] } />
+         <img data-hook="image" src={ imageUrl } className={ Styles['image'] } />
        </div>
        <div className={ Styles['details'] }>
-         <div className={ Styles['price'] }>
+         <div className={ Styles['price'] } data-hook="price">
            { price ? price.amounts.USD : 'Price Upon Request' }
          </div>
-         <div className={ `${Styles['heart']} ${isFavorite ? Styles['favorite'] : ''}` } onClick={ e => toggle(e) }>
+         <div data-hook={ isFavorite ? 'liked' : 'not-liked' } className={ `${Styles['heart']} ${isFavorite ? Styles['favorite'] : ''}` } onClick={ e => toggle(e) }>
            { '<3' }
          </div>
        </div>

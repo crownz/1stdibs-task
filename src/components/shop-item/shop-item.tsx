@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Details from './details';
 import Description from './description';
-import * as Styles from './shop-item.scss';
+import * as Styles from './_shop-item.scss';
 
 interface ShopItemProps {
   item: Item;

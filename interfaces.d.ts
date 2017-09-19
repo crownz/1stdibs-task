@@ -1,6 +1,7 @@
 interface State {
   items: Item[];
   item: Item;
+  favorite: string[]
 }
 
 interface Item {
@@ -13,7 +14,7 @@ interface Item {
     display: string;
   };
   description: string;
-  creator: string;
+  creators: string;
 }
 
 interface Price {

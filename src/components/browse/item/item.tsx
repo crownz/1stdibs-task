@@ -4,9 +4,15 @@ import * as Styles from './item.scss';
  interface ItemProps {
    imageUrl: string;
    price: Price;
+   onFavoriteToggle: any;
+   isFavorite: boolean;
  }
 
- export default ({ imageUrl, price }: ItemProps) => {
+ export default ({ imageUrl, price, onFavoriteToggle, isFavorite }: ItemProps) => {
+   const toggle = e => {
+     e.stopPropagation();
+     onFavoriteToggle()
+   };
 
    return (
      <div className={ Styles['container'] }>
@@ -17,7 +23,7 @@ import * as Styles from './item.scss';
          <div className={ Styles['price'] }>
            { price ? price.amounts.USD : 'Price Upon Request' }
          </div>
-         <div className={ Styles['favorite'] }>
+         <div className={ `${Styles['heart']} ${isFavorite ? Styles['favorite'] : ''}` } onClick={ e => toggle(e) }>
            { '<3' }
          </div>
        </div>

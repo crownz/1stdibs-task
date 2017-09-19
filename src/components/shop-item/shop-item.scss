@@ -27,6 +27,10 @@
   color: darkgoldenrod;
 }
 
+.back-link {
+  cursor: pointer;
+}
+
 .seller {
   font-size: 24px;
   font-weight: bold;
@@ -39,6 +43,9 @@
 }
 
 .image-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   position: relative;
   margin: 5px;
   padding: 10px;
@@ -52,11 +59,26 @@
   height: auto;
 }
 
-.favorite {
+.heart {
   position: absolute;
   top: 0;
   right: 0;
   margin: 10px 10px 0 0;
+  width: 25px;
+  height: 25px;
+  line-height: 25px;
+  text-align: center;
+  border-radius: 50px;
+  cursor: pointer;
+
+  &:hover {
+    color: white;
+    background-color: orangered;
+  }
+}
+
+.favorite {
+  color: orangered;
 }
 
 .details {
@@ -91,12 +113,12 @@
 .m-title {
   padding: 0 10px;
   font-weight: bold;
-  font-size: 10px;
+  font-size: 12px;
 }
 
 .m-content {
   padding: 0 10px;
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 300;
 }
 
@@ -112,7 +134,7 @@
   justify-content: center;
   color: darkgoldenrod;
   padding: 10px;
-  font-size: 10px;
+  font-size: 12px;
   cursor: pointer;
 
   &:first-child {
@@ -126,4 +148,14 @@
   &:active {
     background-color: #EEEEEE;
   }
+}
+
+.description {
+  padding: 10px;
+  font-size: 12px;
+}
+
+.creator {
+  padding: 0 10px 10px 10px;
+  font-size: 12px;
 }

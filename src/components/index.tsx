@@ -4,7 +4,8 @@ import { Router, Route } from 'react-router-dom';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
-import history from '../services/history.js';
+import history from '../services/history';
+import { getFavorites } from '../actions/favorite';
 
 import rootReducer from '../reducers';
 
@@ -24,6 +25,7 @@ export default class BrowserContainer extends React.Component<{}, {}> {
 
   constructor(props) {
     super(props);
+    store.dispatch(getFavorites());
   }
 
   render() {

@@ -38,7 +38,7 @@ function renderContent(item, isFavorite, onFavoriteToggle) {
   return (
     <div className={ Styles['content'] } data-hook="shop-item-container">
       { renderImage(item, isFavorite, onFavoriteToggle) }
-      <div className={ Styles['details'] }>
+      <div className={ Styles['details'] } data-hook="details">
         <Details item={ item } />
         <Description item={ item } />
       </div>
@@ -49,8 +49,8 @@ function renderContent(item, isFavorite, onFavoriteToggle) {
 function renderImage(item, isFavorite, onFavoriteToggle ) {
   return (
     <div className={ Styles['image-container'] }>
-      <div className={ `${Styles['heart']} ${isFavorite ? Styles['favorite'] : ''}` } onClick={ onFavoriteToggle }>{ '<3' }</div>
-      <img className={ Styles['image'] } src={ item.image } />
+      <div data-hook={ isFavorite ? 'liked' : 'not-liked' } className={ `${Styles['heart']} ${isFavorite ? Styles['favorite'] : ''}` } onClick={ onFavoriteToggle }>{ '<3' }</div>
+      <img data-hook="image" className={ Styles['image'] } src={ item.image } />
     </div>
   );
 }

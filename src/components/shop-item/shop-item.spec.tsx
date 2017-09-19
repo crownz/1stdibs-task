@@ -23,6 +23,7 @@ describe('Component: Shop Item', function () {
   it('should render header with title and back button', function () {
     const driver = createDriver();
     expect(driver.element('seller').exists()).to.be.true;
+    expect(driver.element('seller').text()).to.equal('Galerie Plaisance');
     expect(driver.element('back-link').exists()).to.be.true;
   });
 
@@ -31,6 +32,20 @@ describe('Component: Shop Item', function () {
     const driver = createDriver({ onBack });
     driver.element('back-link').click();
     expect(onBack.calledOnce).to.be.true;
+  });
+
+  it('should render image not selected as favorite', function () {
+    const driver = createDriver();
+    expect(driver.element('image').exists()).to.be.true;
+    expect(driver.element('image').getProp('src')).to.equal('https://a.1stdibscdn.com/archivesE/upload/1121189/f_3907612/3907612_s.jpg');
+    expect(driver.element('not-liked').exists()).to.be.true;
+    expect(driver.element('liked').exists()).to.be.false;
+  });
+
+  it('should render image selected as favorite', function () {
+    const driver = createDriver({ isFavorite: true });
+    expect(driver.element('not-liked').exists()).to.be.false;
+    expect(driver.element('liked').exists()).to.be.true;
   });
 });
 
@@ -46,9 +61,8 @@ const createDriver = (newProps = {}) => {
       return {
         exists: () => el.length > 0,
         text: () => el.text(),
-        hasClass: className => el.hasClass(className),
-        children: () => el.children(),
         click: () => el.simulate('click'),
+        getProp: propName => el.prop(propName)
       }
     }
   };

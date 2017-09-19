@@ -3,18 +3,18 @@ import * as Styles from './details.scss';
 
 export default ({ item }) => {
   return (
-    <div className={ Styles['card'] }>
-      <div className={ Styles['title'] }>
+    <div className={ Styles['card'] } data-hook="details-container">
+      <div className={ Styles['title'] } data-hook="title">
         { item.title }
       </div>
-      <div className={ Styles['price'] }>
+      <div className={ Styles['price'] } data-hook="price">
         { item.price ? item.price.amounts.USD : 'Price Upon Request' }
       </div>
       <div className={ Styles['measurements'] }>
         <div className={ Styles['m-title'] }>
           Measurements
         </div>
-        <div className={ Styles['m-content'] }>
+        <div className={ Styles['m-content'] } data-hook="measurements">
           { item.measurements.display }
         </div>
         <div className={ Styles['actions'] }>

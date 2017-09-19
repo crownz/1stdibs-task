@@ -5,7 +5,7 @@ module.exports = {
     context: __dirname,
     devtool: 'cheap-module-eval-source-map',
     entry: {
-        browse: './src/components/browse/browse-container.tsx',
+        browse: './src/components/index.tsx',
         item: './src/entries/item.js'
     },
     output: {
@@ -38,6 +38,7 @@ module.exports = {
                 loaders: [
                     'style-loader',
                     'css-loader?modules&sourceMap&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]',
+                    'sass-loader',
                     'postcss-loader'
                 ]
             }

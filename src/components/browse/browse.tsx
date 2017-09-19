@@ -1,54 +1,69 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
-import './browse.scss';
+import { getItem } from '../../actions/item';
+import Item from './item';
+import * as Styles from './browse.scss';
 
 interface BrowseProps {
-    items: item[];
+  items: Item[];
+  getItem: any;
+  history?: any;
 }
 
-class Browse extends React.Component<BrowseProps, undefined> {
+class Browse extends React.Component<BrowseProps, {}> {
 
-    constructor(props: BrowseProps) {
-        super(props);
-    }
+  constructor(props: BrowseProps, context) {
+    super(props, context);
+    console.log("props: ", props, context);
+  }
 
-    render() {
-        console.log("items: ", this.props.items);
-        return (
-            <div>swx4all</div>
-        )
-    }
+  renderItems() {
+    const { items } = this.props;
+    return items.map((item: Item) => <div key={ item.id } onClick={ () => this.getItemAndNavigate(item.id) }><Item { ...this.itemProps(item) } /></div> )
+  }
 
-    static mapStateToProps(state: state) {
-        return {
-            items: state.items
-        };
-    }
+  getItemAndNavigate(id: string) {
+    // this.props.getItem(id).then(success => {
+    //   console.log("navigating..", this.props.history.push);
+    //   this.props.history.push(`/wtf`);
+    // });
+    this.props.history.push(`/item/${id}`);
+  }
 
-    static mapDispatchToProps(dispatch: any) {
-        return bindActionCreators({}, dispatch);
-    }
+  itemProps(item: Item) {
+    return {
+      price: item.price,
+      imageUrl: this.props.items[0].image
+    };
+  }
+
+  render() {
+    const { items } = this.props;
+    console.log("items: ", items);
+
+    return (
+      <div className={ Styles['container'] }>
+        <div className={ Styles['title'] }>
+             Browse page
+        </div>
+        <div className={ Styles['items'] }>
+          { this.renderItems() }
+        </div>
+      </div>
+    );
+  }
+
+  static mapStateToProps(state: State) {
+    return {
+      items: state.items
+    };
+  }
+
+  static mapDispatchToProps(dispatch: any) {
+    return bindActionCreators({ getItem }, dispatch);
+  }
 }
 
-export const ConnectedBrowse = connect(Browse.mapStateToProps, Browse.mapDispatchToProps)(Browse);
-export default ConnectedBrowse;
-//
-// const BrowserContainer = () => {
-//     const initialState: any = {
-//         items: window.preloadedData.items || []
-//     };
-//     const middlewares = [thunk];
-//     const store = createStore(rootReducer, initialState, applyMiddleware(...middlewares));
-//
-//     return (
-//         <Provider store={ store }>
-//             <ConnectedBrowse />
-//         </Provider>
-//     );
-// };
-//
-// ReactDOM.render(
-//     <BrowserContainer />,
-//     document.getElementById("root")
-// );
+export default withRouter(connect(Browse.mapStateToProps, Browse.mapDispatchToProps)(Browse));

@@ -25,18 +25,24 @@
   },
   "homepage": "https://github.com/1stdibs/front-end-quiz#readme",
   "dependencies": {
+    "@types/history": "^4.6.0",
     "@types/react": "^16.0.5",
     "@types/react-dom": "^15.5.4",
     "@types/react-redux": "^5.0.8",
+    "@types/react-router-dom": "^4.0.7",
     "@types/redux": "^3.6.0",
     "ejs": "^2.4.1",
     "express": "^4.13.4",
     "file-loader": "^0.8.5",
+    "history": "^4.7.2",
+    "node-sass": "^4.5.3",
     "react": "^0.14.7",
     "react-dom": "^0.14.7",
     "react-redux": "^5.0.6",
+    "react-router-dom": "^4.2.2",
     "redux": "^3.7.2",
-    "redux-thunk": "^2.2.0"
+    "redux-thunk": "^2.2.0",
+    "sass-loader": "^6.0.6"
   },
   "devDependencies": {
     "autoprefixer": "^6.3.4",

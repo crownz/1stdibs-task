@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Browse page</title>
+    </head>
+    <body>
+        <div id="root"></div>
+
+        <!-- Dependencies -->
+        <script src="/node_modules/react/dist/react.js"></script>
+        <script src="/node_modules/react-dom/dist/react-dom.js"></script>
+
+        <!-- Main -->
+
+        <script>
+            var preloadedData = {
+                items: <%- JSON.stringify(items) %>,
+                totalItems: <%= totalItems %>
+            };
+            window.preloadedData = preloadedData;
+        </script>
+
+        <script src="/bundle/browse.js"></script>
+    </body>
+</html>

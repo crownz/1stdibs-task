@@ -5,7 +5,7 @@ module.exports = {
     context: __dirname,
     devtool: 'cheap-module-eval-source-map',
     entry: {
-        browse: './src/components/browse/browse.tsx',
+        browse: './src/components/browse/browse-container.tsx',
         item: './src/entries/item.js'
     },
     output: {
@@ -15,7 +15,7 @@ module.exports = {
     },
     resolve: {
         root: path.resolve(__dirname + '/../src'),
-        extensions: ['', '.js', '.jsx', '.css', '.scss', '.tsx']
+        extensions: ['', '.js', '.jsx', '.css', '.tsx']
     },
     plugins: [
         new webpack.optimize.OccurenceOrderPlugin(),

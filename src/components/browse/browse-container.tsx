@@ -3,12 +3,8 @@ import * as ReactDOM from "react-dom";
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
-import Browse from './browse';
+import { ConnectedBrowse } from './browse';
 import rootReducer from '../../reducers/root';
-
-interface BrowseContainerProps {
-
-}
 
 const BrowserContainer = () => {
     const initialState: any = {
@@ -19,7 +15,7 @@ const BrowserContainer = () => {
 
     return (
         <Provider store={ store }>
-            <Browse />
+          <ConnectedBrowse />
         </Provider>
     );
 };

@@ -1,4 +1,6 @@
 import * as React from 'react';
+import Details from './details';
+import Description from './description';
 import * as Styles from './shop-item.scss';
 
 interface ShopItemProps {
@@ -35,44 +37,20 @@ function renderHeader(item, onBack) {
 function renderContent(item, isFavorite, onFavoriteToggle) {
   return (
     <div className={ Styles['content'] }>
-      <div className={ Styles['image-container'] }>
-        <div className={ `${Styles['heart']} ${isFavorite ? Styles['favorite'] : ''}` } onClick={ onFavoriteToggle }>{ '<3' }</div>
-        <img className={ Styles['image'] } src={ item.image } />
-      </div>
+      { renderImage(item, isFavorite, onFavoriteToggle) }
       <div className={ Styles['details'] }>
-        <div className={ Styles['card'] }>
-          <div className={ Styles['title'] }>
-            { item.title }
-          </div>
-          <div className={ Styles['price'] }>
-            { item.price ? item.price.amounts.USD : 'Price Upon Request' }
-          </div>
-          <div className={ Styles['measurements'] }>
-            <div className={ Styles['m-title'] }>
-              Measurements
-            </div>
-            <div className={ Styles['m-content'] }>
-              { item.measurements.display }
-            </div>
-            <div className={ Styles['actions'] }>
-              <div className={ Styles['button'] }>
-                PURCHASE
-              </div>
-              <div className={ Styles['button'] }>
-                MAKE OFFER
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className={ Styles['card'] }>
-          <div className={ Styles['description'] }>
-            { item.description }
-          </div>
-          <div className={ Styles['creator'] }>
-            { `Creator: ${item.creators}` }
-          </div>
-        </div>
+        <Details item={ item } />
+        <Description item={ item } />
       </div>
+    </div>
+  );
+}
+
+function renderImage(item, isFavorite, onFavoriteToggle ) {
+  return (
+    <div className={ Styles['image-container'] }>
+      <div className={ `${Styles['heart']} ${isFavorite ? Styles['favorite'] : ''}` } onClick={ onFavoriteToggle }>{ '<3' }</div>
+      <img className={ Styles['image'] } src={ item.image } />
     </div>
   );
 }

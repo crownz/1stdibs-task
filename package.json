@@ -6,7 +6,7 @@
   "scripts": {
     "cleaninstall": "rm -rf ./node_modules && npm cache clean && npm install",
     "dev": "node server/index.js",
-    "test": "mocha --require ignore-styles --compilers js:babel-core/register -w test/helpers/browser.js ./src/**/*.spec.tsx"
+    "test": "mocha --watch-extensions tsx --watch --require ignore-styles --compilers js:babel-core/register test/helpers/browser.js ./src/**/*.spec.tsx"
   },
   "repository": {
     "type": "git",

@@ -36,7 +36,7 @@ function renderHeader(item, onBack) {
 
 function renderContent(item, isFavorite, onFavoriteToggle) {
   return (
-    <div className={ Styles['content'] }>
+    <div className={ Styles['content'] } data-hook="shop-item-container">
       { renderImage(item, isFavorite, onFavoriteToggle) }
       <div className={ Styles['details'] }>
         <Details item={ item } />

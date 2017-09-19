@@ -1,19 +1,28 @@
+import 'jsdom-global/register';
+import * as globalJsdom from 'jsdom-global';
 import * as React from 'react';
-import { mount } from 'enzyme';
+import { shallow } from 'enzyme';
 import { expect } from 'chai';
-import ShopItem from './shop-item';
+import ShopItem from './shop-item.tsx';
 
 describe('Component: Shop Item', function () {
 
+  let cleanup;
+
+  beforeEach(() => cleanup = globalJsdom.default);
+  afterEach(() => {
+    cleanup();
+  });
+
   it('should render Quizz component', function () {
-    console.log("SHOP ITEM: ", ShopItem);
     const driver = createDriver();
+    expect(driver.element('shop-item-container').exists()).to.be.true;
   });
 });
 
 const createDriver = (newProps = {}) => {
 
-  const wrapper = mount(
+  const wrapper = shallow(
     <ShopItem { ...getProps(newProps) } />
   );
 
@@ -31,22 +40,13 @@ const createDriver = (newProps = {}) => {
   };
 };
 
-// const getProps = (newProps) => {
-//   return Object.assign({}, {
-//     item: getItem(),
-//     onBack: () => ({}),
-//     onFavoriteToggle: () => ({}),
-//     isFavorite: false
-//   }, newProps);
-// };
-
 const getProps = (newProps) => {
-  return {
+  return Object.assign({}, {
     item: getItem(),
     onBack: () => ({}),
     onFavoriteToggle: () => ({}),
     isFavorite: false
-  };
+  }, newProps);
 };
 
 function getItem() {

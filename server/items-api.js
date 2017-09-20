@@ -12,6 +12,17 @@ const getItem = function (itemId) {
     }) || {};
 };
 
+const getItems = function (payload) {
+  const start = Number.parseInt(payload.start) || 0;
+  const limit = Number.parseInt(payload.limit) || 9;
+  const items = cachedItems.slice(start, start + limit);
+
+  return {
+    items: items,
+    totalItems: cachedItems.length
+  };
+};
+
 app.get('/item/:id', (req, res) => {
   const id = req.params.id;
   const item = getItem(id);

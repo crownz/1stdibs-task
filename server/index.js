@@ -1,5 +1,6 @@
 const express = require('express');
 const webpack = require('webpack');
+const path = require('path');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 const config = require('../webpack.config.js');
 
@@ -12,8 +13,8 @@ app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
 app.use('/api', require('./items-api'));
-app.use('/node_modules', express.static('/Users/vytas/Documents/Projects/front-end-quiz/react/node_modules/'));
-app.use('*', require('./routes/browseRouter'));
+app.use('/node_modules', express.static(path.join(__dirname, '..', 'node_modules')));
+app.use('/browse', require('./routes/browseRouter'));
 
 const server = app.listen(port, function () {
     console.log('Example app listening at localhost:%s', port);

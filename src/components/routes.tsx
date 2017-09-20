@@ -15,8 +15,8 @@ export default class Inner extends React.Component<{}, {}> {
       <div className={ Styles['container'] }>
         <div className={ Styles['inner-container'] }>
           <div className={ Styles['content'] }>
+            <Route exact path="/" component={ Browse } />
             <Route path="/item/:id" component={ ShopItem } />
-            <Route path="/home" component={ Browse } />
           </div>
         </div>
       </div>

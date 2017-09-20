@@ -9,7 +9,8 @@ import rootReducer from '../reducers';
 import RoutesContainer from './routes';
 
 const initialState: any = {
-  items: window.preloadedData.items || []
+  items: window.preloadedData.items || [],
+  totalItems: window.preloadedData.totalItems
 };
 
 const middlewares = [thunk];
@@ -25,7 +26,7 @@ export default class BrowserContainer extends React.Component<{}, {}> {
   render() {
     return (
       <Provider store={ store }>
-        <BrowserRouter>
+        <BrowserRouter basename="/browse">
           <RoutesContainer />
         </BrowserRouter>
       </Provider>

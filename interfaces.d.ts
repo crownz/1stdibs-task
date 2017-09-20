@@ -1,7 +1,8 @@
 interface State {
   items: Item[];
   item: Item;
-  favorite: string[]
+  favorite: string[];
+  totalItems: number;
 }
 
 interface Item {

@@ -34,6 +34,16 @@ describe('Component: Browse', function () {
     const driver = createDriver({ favorite: ['1', '2'] });
     expect(driver.elements('liked').length).to.equal(2);
   });
+
+  it('should render load more when there are more items than displayed', function () {
+    const driver = createDriver();
+    expect(driver.elements('load-more').exists()).to.be.true;
+  });
+
+  it('should not render load more when all items are displayed', function () {
+    const driver = createDriver({ totalItems: 3 });
+    expect(driver.elements('load-more').exists()).to.be.false;
+  });
 });
 
 const createDriver = (newProps = {}) => {
@@ -60,6 +70,7 @@ const getProps = (newProps) => {
     favorite: [],
     getItem: () => ({}),
     toggleFavoriteItem: () => ({}),
-    history: null
+    history: null,
+    totalItems: 4
   }, newProps);
 };

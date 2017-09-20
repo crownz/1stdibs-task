@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { getItem } from '../../actions/item';
+import { getItem, loadItems } from '../../actions/item';
 import { toggleFavoriteItem } from '../../actions/favorite';
 import Item from './item';
 import * as Styles from './_browse.scss';
@@ -10,14 +10,17 @@ interface BrowseProps {
   items: Item[];
   favorite: any;
   getItem: any;
+  loadItems: any;
   toggleFavoriteItem: any;
   history?: any;
+  totalItems: number;
 }
 
 export class Browse extends React.Component<BrowseProps, {}> {
 
   constructor(props: BrowseProps) {
     super(props);
+    this.loadMoreItems = this.loadMoreItems.bind(this);
   }
 
   renderItems() {
@@ -42,14 +45,34 @@ export class Browse extends React.Component<BrowseProps, {}> {
     this.props.toggleFavoriteItem(id);
   }
 
+  loadMoreItems() {
+    const start = this.props.items.length;
+    this.props.loadItems(start, 9);
+  }
+
+  renderActions() {
+    return (
+      <div className={ Styles['actions'] } data-hook="browse-footer">
+        <div className={ Styles['more'] } onClick={ this.loadMoreItems } data-hook="load-more">
+          LOAD MORE
+        </div>
+      </div>
+    );
+  }
+
   render() {
+    const { items, totalItems } = this.props;
+
     return (
       <div className={ Styles['container'] } data-hook="browse-container">
         <div className={ Styles['title'] }>
            Browse page
         </div>
-        <div className={ Styles['items'] } data-hook="items">
-          { this.renderItems() }
+        <div className={ Styles['content'] }>
+          <div className={ Styles['items'] } data-hook="items">
+            { this.renderItems() }
+          </div>
+          { totalItems > items.length ? this.renderActions() : null }
         </div>
       </div>
     );
@@ -58,12 +81,13 @@ export class Browse extends React.Component<BrowseProps, {}> {
   static mapStateToProps(state: State) {
     return {
       items: state.items,
-      favorite: state.favorite
+      favorite: state.favorite,
+      totalItems: state.totalItems
     };
   }
 
   static mapDispatchToProps(dispatch: any) {
-    return bindActionCreators({ getItem, toggleFavoriteItem }, dispatch);
+    return bindActionCreators({ getItem, loadItems, toggleFavoriteItem }, dispatch);
   }
 }
 

@@ -1,6 +1,10 @@
+import { LOAD_ITEMS_SUCCESS } from '../actions/item';
+
 export default (state: any = [], action: any = {}) => {
     switch (action.type) {
-        default:
-            return state;
+      case LOAD_ITEMS_SUCCESS:
+        return [...state, ...action.payload];
+      default:
+          return state;
     }
 };

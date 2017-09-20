@@ -28,7 +28,7 @@ class ShopItemContainer extends React.Component<ShopItemContainerProps, {}> {
 
   goBack() {
     this.props.clearItem();
-    this.props.history.push('/home');
+    this.props.history.push('/');
   }
 
   toggleFavorite() {
